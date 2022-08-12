@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,500;1,500&display=swap");
+
+@layer base {
+  body {
+    @apply bg-black font-body scrollbar-hide;
+  }
+}
+
 @layer components {
   .sidebarIcon {
     @apply h-6 text-[#808080] cursor-pointer;
