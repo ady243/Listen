@@ -1,7 +1,12 @@
+import { Search } from "heroicons-react";
 import React from "react";
 
 function Body() {
-  return <div>Body</div>;
+  return (
+    <section>
+      <Search />
+    </section>
+  );
 }
 
 export default Body;

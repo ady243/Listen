@@ -1,6 +1,7 @@
 import Body from "./Body";
 import Right from "./Right";
 import Sidebar from "./Sidebar";
+import Search from "./Search";
 
 function Dashboard() {
   return (
@@ -8,6 +9,7 @@ function Dashboard() {
       <Sidebar />
       <Body />
       <Right />
+      <Search />
     </main>
   );
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { IoCompass, IoHome, IoAddOutline } from "react-icons/io5";
 
 function Sidebar() {
   return (
@@ -10,6 +11,12 @@ function Sidebar() {
         height={75}
         objectFit="contain"
       />
+
+      <div className="flex flex-col space-y-8">
+        <IoHome className="text-4xl text-white siderbarIcon" />
+        <IoCompass className="text-4xl text-white siderbarIcon " />
+        <IoAddOutline className="text-4xl text-white siderbarIcon" />
+      </div>
     </section>
   );
 }
