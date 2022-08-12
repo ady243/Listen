@@ -16,8 +16,8 @@ function Search({ search, setSearch }) {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         className="bg-[#dadada] border-none text-black lg:w-full focus:ring-0 outline-none 
-        font-mono text-xs"
-        placeholder="Recherche..."
+       "
+        placeholder="Recherche"
       />
       <div className="flex items-center"></div>
     </div>
