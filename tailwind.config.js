@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        "2xl": "1500px",
+        "2xl": "500px",
       },
       keyframes: {
         pulse: {
@@ -17,7 +17,7 @@ module.exports = {
         },
       },
       animation: {
-        // pulse: "pulse 4s cubic-bezier(0.4,0,0.6,1) infinte",
+        pulse: "pulse 4s cubic-bezier(0.4,0,0.6,1) infinte",
       },
     },
     fontFamily: {

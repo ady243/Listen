@@ -3,9 +3,9 @@ import React from "react";
 function Search({ search, setSearch }) {
   return (
     <div
-      className="absolute inset-x-1 -top-20 max-w-[1150px]
+      className="absolute inset-x-3 -top-20 max-w-[1150px]
        bg-[#dadada] rounded-full overflow-hidden border-4
-     border-[#0bcb0133] p-1.5 px-5 pr-10 flex items-center m-24 "
+       border-[#0bcb0133] p-0.1 px-5 pr-10 flex items-center m-24 font-sans "
     >
       <div
         className="flex-shrink-0 w-5 h-5 border-2
@@ -15,7 +15,7 @@ function Search({ search, setSearch }) {
         type="text"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="bg-[#dadada] border-none text-black lg:w-full focus:ring-0 outline-none 
+        className="bg-[#dadada] border-none text-black lg:w-full focus:ring-0 outline-none  
        "
         placeholder="Recherche.."
       />
