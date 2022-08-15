@@ -5,7 +5,7 @@ function Search({ search, setSearch }) {
     <div
       className="absolute inset-x-3 -top-20 max-w-[1150px]
        bg-[#dadada] rounded-full overflow-hidden border-4
-       border-[#0bcb0133] p-0.1 px-5 pr-10 flex items-center m-24 font-sans "
+       border-[#42cbcf] p-0.1 px-5 pr-10 flex items-center m-24 font-sans "
     >
       <div
         className="flex-shrink-0 w-5 h-5 border-2
