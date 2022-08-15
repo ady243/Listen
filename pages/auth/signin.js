@@ -4,6 +4,7 @@ import Head from "next/head";
 import Loader from "../../components/Loader";
 import { useRouter } from "next/router";
 import { getProviders, useSession } from "next-auth/react";
+import { useEffect } from "react";
 
 function Signin(providers) {
   const { data: session } = useSession("");
@@ -38,7 +39,7 @@ function Signin(providers) {
         className="text-white py-4 px-6 rounded-full bg-[#4dbbedfa] transition duration-300 ease-out
       border border-transparent uppercase font-bold text-xl
        md:text-base tracking-wider hover:scale-105 hover:bg-inherit"
-        onClick={() => signIn(providers.id)}
+        onClick={() => Signin(providers.id)}
       >
         Sign in with spotify
       </button>
