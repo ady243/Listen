@@ -1,6 +1,7 @@
 import NextAuth from "next-auth/next";
 
 import SpotifyProvider from "next-auth/providers/spotify";
+import GoogleProvider from "next-auth/providers/google";
 
 async function refreshAccessToken(token) {
   try {
@@ -50,33 +51,38 @@ export default NextAuth({
       authorization:
         "https://accounts.spotify.com/authorize?scope=user-read-email,playlist-read-private,user-read-email,streaming,user-read-private,user-library-read,user-library-modify,user-read-playback-state,user-modify-playback-state,user-read-recently-played,user-follow-read",
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    })
   ],
-  pages: {
-    signIn: "/auth/signin",
-  },
-  callbacks: {
-    async jwt({ token, user, account }) {
-      if (account && user) {
-        return {
-          accessToken: account.access_token,
-          accessTokenExpires: Date.now() + account.expires_in * 1000,
-          refreshToken: account.refresh_token,
-          user,
-        };
-      }
+  secret: process.env.JWT_SECRET,
+  // pages: {
+  //   signIn: "/auth/signin",
+  // },
+  // callbacks: {
+  //   async jwt({ token, user, account }) {
+  //     if (account && user) {
+  //       return {
+  //         accessToken: account.access_token,
+  //         accessTokenExpires: Date.now() + account.expires_in * 1000,
+  //         refreshToken: account.refresh_token,
+  //         user,
+  //       };
+  //     }
 
-      if (Date.now() < token.accessTokenExpires) {
-        return token;
-      }
+  //     if (Date.now() < token.accessTokenExpires) {
+  //       return token;
+  //     }
 
-      return refreshAccessToken(token);
-    },
-    async session({ session, token }) {
-      session.user = token.user;
-      session.accessToken = token.accessToken;
-      session.error = token.error;
+  //     return refreshAccessToken(token);
+  //   },
+  //   async session({ session, token }) {
+  //     session.user = token.user;
+  //     session.accessToken = token.accessToken;
+  //     session.error = token.error;
 
-      return session;
-    },
-  },
+  //     return session;
+  //   },
+  // },
 });

@@ -9,7 +9,18 @@ import { getProviders, useSession, signIn, signOut } from "next-auth/react";
 function SignInUser() {
   const { data: session } = useSession();
   const router = useRouter();
-
+  // if session
+  if (session) {
+    return (
+      <>
+        <div>
+          <h1>Vous êtes connecté</h1>
+          <button onClick={() => signOut()}>Se déconnecter</button>
+        </div>
+      </>
+    );
+  }
+  
   // Si user connecté on redirige vers la page d'accueil
   useEffect(() => {
     if (session) {
@@ -17,7 +28,7 @@ function SignInUser() {
     }
   }, [session]);
 
-  // Il faut récupérer les providers après 
+  // Il faut récupérer les providers après
   const [providers, setProviders] = useState(null);
 
   useEffect(() => {
@@ -54,6 +65,7 @@ function SignInUser() {
             >
               Sign in with {provider.name}
             </button>
+            <div className="w-full h-px bg-white opacity-25 my-4"></div>
           </div>
         ))}
     </div>
