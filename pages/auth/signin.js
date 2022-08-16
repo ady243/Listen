@@ -7,7 +7,7 @@ import { getProviders, useSession } from "next-auth/react";
 import { useEffect } from "react";
 
 function Signin(providers) {
-  const { data: session } = useSession();
+  const { data: session } = useSession("");
   const router = useRouter();
 
   useEffect(() => {
@@ -44,9 +44,15 @@ function Signin(providers) {
         Sign in with spotify
       </button>
       <h1 className="text-white">OR</h1>
+
+      {Object.values(providers).map((provider) => (
+        <div key={provider.id}></div>
+      ))}
+
       <button
         className="text-white py-4 px-6 rounded-full bg-[#4dbbedfa] transition duration-300 ease-out
       border border-transparent uppercase font-bold text-xl md:text-base tracking-wider hover:scale-105 hover:bg-inherit"
+        onClick={() => signIn(providers.id)}
       >
         Create a new account
       </button>
