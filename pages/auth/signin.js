@@ -1,22 +1,30 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Head from "next/head";
-import Loader from "../../components/Loader";
 import { useRouter } from "next/router";
-import { getProviders, useSession } from "next-auth/react";
-import { useEffect } from "react";
+import { getProviders, useSession, signIn } from "next-auth/react";
 
-function Signin(providers) {
-  const { data: session } = useSession("");
+function SignInUser() {
+  const { data: session } = useSession();
   const router = useRouter();
 
+  // Si user connecté on redirige vers la page d'accueil
   useEffect(() => {
     if (session) {
       router.push("/");
     }
   }, [session]);
 
-  if (session) return <Loader />;
+  // Il faut récupérer les providers après
+  const [providers, setProviders] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const res = await getProviders();
+      setProviders(res);
+    })();
+  }, []);
 
   return (
     <div className="flex flex-col items-center h-screen space-y-0 bg-black pt-25">
@@ -31,42 +39,24 @@ function Signin(providers) {
         objectFit="contain"
         className="animate-pulse"
       />
-      {Object.values(providers).map((provider) => (
-        <div key={provider.id}></div>
-      ))}
 
-      <button
-        className="text-white py-4 px-6 rounded-full bg-[#4dbbedfa] transition duration-300 ease-out
-      border border-transparent uppercase font-bold text-xl
-       md:text-base tracking-wider hover:scale-105 hover:bg-inherit"
-        onClick={() => Signin(providers.id)}
-      >
-        Sign in with spotify
-      </button>
-      <h1 className="text-white">OR</h1>
-
-      {Object.values(providers).map((provider) => (
-        <div key={provider.id}></div>
-      ))}
-
-      <button
-        className="text-white py-4 px-6 rounded-full bg-[#4dbbedfa] transition duration-300 ease-out
-      border border-transparent uppercase font-bold text-xl md:text-base tracking-wider hover:scale-105 hover:bg-inherit"
-        onClick={() => signIn(providers.id)}
-      >
-        Create a new account
-      </button>
+      {/* liste des providers configurés */}
+      {providers &&
+        Object.values(providers).map((provider) => (
+          // Btn pour chaque provider
+          <div key={provider.id}>
+            <button
+              className="text-white py-4 px-6 rounded-full bg-[#4dbbedfa] transition duration-300 ease-out
+               border border-transparent uppercase font-bold text-xl
+               md:text-base tracking-wider hover:scale-105 hover:bg-inherit"
+              onClick={() => signIn(provider.id)}
+            >
+              Sign in with {provider.name}
+            </button>
+          </div>
+        ))}
     </div>
   );
 }
 
-export default Signin;
-
-export async function getServerSidePrps() {
-  const providers = await getProviders();
-  return {
-    props: {
-      providers,
-    },
-  };
-}
+export default SignInUser;
