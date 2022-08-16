@@ -7,7 +7,7 @@ import { getProviders, useSession } from "next-auth/react";
 import { useEffect } from "react";
 
 function Signin(providers) {
-  const { data: session } = useSession("");
+  const { data: session } = useSession();
   const router = useRouter();
 
   useEffect(() => {
