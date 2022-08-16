@@ -47,8 +47,8 @@ function SignInUser() {
           <div key={provider.id}>
             <button
               className="text-white py-4 px-6 rounded-full bg-[#4dbbedfa] transition duration-300 ease-out
-      border border-transparent uppercase font-bold text-xl
-       md:text-base tracking-wider hover:scale-105 hover:bg-inherit"
+            border border-transparent uppercase font-bold text-xl
+            md:text-base tracking-wider hover:scale-105 hover:bg-inherit space-x-10"
               onClick={() => signIn(provider.id)}
             >
               Sign in with {provider.name}
