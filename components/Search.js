@@ -1,6 +1,8 @@
 import React from "react";
+import { useState } from "react";
 
-function Search({ search, setSearch }) {
+function Search() {
+  const [search, setSearch] = useState(null);
   return (
     <div
       className="absolute inset-x-3 -top-20 max-w-[1150px]

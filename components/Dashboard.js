@@ -3,6 +3,7 @@ import Right from "./Right";
 import Sidebar from "./Sidebar";
 import Search from "./Search";
 
+const spotifyApi = new spotifyApi({});
 function Dashboard() {
   return (
     <main>
