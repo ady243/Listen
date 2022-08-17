@@ -3,7 +3,7 @@ import { useState } from "react";
 import React from "react";
 import { useEffect } from "react";
 import { useSession } from "next-auth/react";
-import SpotifyWebApi from "spotify-web-api-node";
+import Poster from "./Poster";
 
 function Body({ spotifyApi }) {
   const { data: session } = useSession();
@@ -71,16 +71,20 @@ function Body({ spotifyApi }) {
       scrollbar-hide h-96 lg:grid-cols-2 xl:grid-cols-4 gap-x-4 gap-y-8"
       >
         {searchResults.length === 0
-          ? newReleases
-              .slice(0, 4)
-              .map((track) => (
-                <Poster
-                  key={track.id}
-                  track={track}
-                  chooseTrack={chooseTrack}
-                />
-              ))
-          : searchResults.slice(0, 4).map((track) => <Poster />)}
+          ? newReleases.slice(0, 4).map((track) => (
+              <Poster
+                key={track.id}
+                track={track}
+                //  chooseTrack={chooseTrack}
+              />
+            ))
+          : searchResults.slice(0, 4).map((track) => (
+              <Poster
+                key={track.id}
+                track={track}
+                //  chooseTrack={chooseTrack}
+              />
+            ))}
       </div>
     </section>
   );
