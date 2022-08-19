@@ -1,8 +1,7 @@
-import React from "react";
 import { useState } from "react";
 
-function Search() {
-  const [search, setSearch] = useState(null);
+function Search({}) {
+  const [search, setSearch] = useState("");
   return (
     <div
       className="absolute inset-x-3 -top-20 max-w-[1150px]
@@ -13,6 +12,7 @@ function Search() {
         className="flex-shrink-0 w-5 h-5 border-2
        border-[#000000] rounded-full animate-bounce"
       />
+
       <input
         type="text"
         value={search}

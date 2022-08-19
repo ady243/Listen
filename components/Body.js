@@ -1,4 +1,4 @@
-import { Search } from "heroicons-react";
+import Search from "./Search";
 import { useState } from "react";
 import React from "react";
 import { useEffect } from "react";
@@ -12,10 +12,13 @@ function Body({ spotifyApi }) {
   const [searchResults, setSearchResults] = useState([]);
   const [newReleases, setNewReleases] = useState([]);
 
-  useEffect(() => {
-    if (!accessToken) return;
-    spotifyApi.setAccessToken(accessToken);
-  }, [accessToken]);
+  useEffect(
+    ({}) => {
+      if (!accessToken) return;
+      spotifyApi.setAccessToken(accessToken);
+    },
+    [accessToken]
+  );
 
   // search...
 
@@ -64,8 +67,8 @@ function Body({ spotifyApi }) {
   console.log(newReleases);
 
   return (
-    <section>
-      <Search Search={setSearch} />
+    <section className="bg-black ml-24 py-4 space-y-8 md:max-w-6xl flex-grow md:mr-2.5">
+      <Search search={setSearch} setSearch={setSearch} />
       <div
         className="grid grid-cols-2 py-4 overflow-y-scroll 
       scrollbar-hide h-96 lg:grid-cols-2 xl:grid-cols-4 gap-x-4 gap-y-8"
