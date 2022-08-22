@@ -1,11 +1,10 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { getProviders, useSession, signIn, signOut } from "next-auth/react";
+import { getProviders, useSession, signIn } from "next-auth/react";
 
-function SignInUser() {
+function SignInUser({}) {
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -60,3 +59,10 @@ function SignInUser() {
 }
 
 export default SignInUser;
+
+export async function getServerSideProps() {
+  const providers = await getProviders();
+  return {
+    props: { providers },
+  };
+}
