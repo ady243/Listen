@@ -1,68 +1,137 @@
-/* eslint-disable @next/next/no-img-element */
-import React from "react";
-import { IoPause, IoPlay } from "react-icons/io5";
+import SearchBar from "./SearchBar";
+import SpotifyWebApi from "spotify-web-api-node";
+import { useState, useEffect } from "react";
+import Poster from "./Poster";
+import Loader from "./Loader";
 
-function Poster({ album }) {
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+
+const spotifyApi = new SpotifyWebApi({
+  clientId: process.env.SPOTIFY_CLIENT_ID,
+  clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+});
+
+function Body({ session }) {
+  // On peut faire ça parce que le Body n'est visible que si le parent a la session
+  // Attention: On peut faire mieux que ça, c'est juste un exemple
+
+  const { user } = session;
+
+  const [realases, setRealases] = useState([]);
+  const [realasesLoading, setRealasesLoading] = useState(false);
+  const [realasesError, setRealasesError] = useState(null);
+  const [realasesOffset, setRealasesOffset] = useState(0);
+  const [realasesLimit, setRealasesLimit] = useState(4);
+  const [realasesTotal, setRealasesTotal] = useState(0);
+  const [realasesNext, setRealasesNext] = useState(null);
+  const [realasesPrevious, setRealasesPrevious] = useState(null);
+
+  useEffect(() => {
+    if (!user) {
+      setRealases([]);
+      return;
+    }
+    if (session) {
+      setRealasesLoading(true);
+      spotifyApi.setAccessToken(session.accessToken);
+      spotifyApi
+        .getNewReleases({
+          limit: realasesLimit,
+          offset: realasesOffset,
+          country: "FR",
+        })
+        .then((data) => {
+          console.log(data.body);
+          setRealases(data.body.albums.items);
+          setRealasesTotal(data.body.albums.total);
+          setRealasesNext(data.body.albums.next);
+          setRealasesPrevious(data.body.albums.previous);
+          setRealasesLoading(false);
+        })
+        .catch((error) => {
+          setRealasesError(error);
+          setRealasesLoading(false);
+        });
+    }
+  }, [realasesLimit, realasesOffset, session, user]);
+
+  //  useeffect pour la pagination
+  useEffect(() => {
+    if (!user) {
+      setRealases([]);
+      return;
+    }
+    if (session) {
+      setRealasesLoading(true);
+      spotifyApi.setAccessToken(session.accessToken);
+      spotifyApi
+        .getNewReleases({
+          limit: realasesLimit,
+          offset: realasesOffset,
+          country: "FR",
+        })
+        .then((data) => {
+          console.log(data.body);
+          setRealases(data.body.albums.items);
+          setRealasesTotal(data.body.albums.total);
+          setRealasesNext(data.body.albums.next);
+          setRealasesPrevious(data.body.albums.previous);
+          setRealasesLoading(false);
+        })
+        .catch((error) => {
+          setRealasesError(error);
+          setRealasesLoading(false);
+        });
+    }
+  }, [user, realasesLimit, session, realasesOffset]);
+
+  //  if loading
+  if (realasesLoading) {
+    return <Loader />;
+  }
+
+  //  check if error
+  if (realasesError) {
+    return <div>Error: {realasesError.message}</div>;
+  }
+
   return (
-    // <div
-    //   className="w-[200] h-[500] rounded-none overflow-hidden relative text-white
-    // cursor-pointer hover:scale-105 hover:text-white/100 transition
-    //  duration-200 ease-out group-mx-auto space-y-3 top-1.5
-    // "
-    // >
-    //   {/* {album.images.map((image) => (
-
-    //   ))} */}
-    //   <div>
-    //     <img
-    //       src={album.url}
-    //       alt=""
-    //       className="absolute inset-0 object-contain w-full h-full groupe-hover:opacity-100"
-    //     />
-    //   </div>
-
-    //   <div className="absolute bottom-10 inset-x-0 ml-4 flex items-center space-x-3.5">
-    //     <div
-    //       className="h-10 w-10 bg-[#42cbcf] rounded-full flex items-center justify-center
-    //     group-hover:bg-[#42cbcf] flex-shrink-0"
-    //     >
-    //       {/* <IoPause className="text-xl" /> */}
-    //       <IoPlay className="text-l ml-[1px]" />
-    //     </div>
-    //   </div>
-    // </div>
     <>
-      <div
-        className="w-[200] h-[200] rounded-none overflow-hidden relative text-white
-    cursor-pointer hover:scale-105 hover:text-white/100 transition
-     duration-200 ease-out group-mx-auto space-y-5 top-1.5
-    "
-      >
-        <h2> {album.name} </h2>
-        {/*show all images*/}
-        {album.images.map((image) => (
-          // eslint-disable-next-line react/jsx-key, @next/next/no-img-element
-          <img
-            src={image.url}
-            alt=""
-            width={500}
-            height={500}
-            className="absolute object-contain w-full h-full inset-1 groupe-hover:opacity-100"
-          />
-        ))}
+      <SearchBar />
+      <section className="bg-black text-white ml-24 py-6 space-x-5 md:max-w-6xl  md:mr-1.5 h-full">
+        {/* Le composant barre de recherche contient aussi les résultats */}
 
-        <div className="absolute bottom-10 inset-x-0 ml-4 flex items-center space-x-3.5">
-          <div
-            className="h-10 w-10 bg-[#42cbcf] rounded-full flex items-center justify-center
-        group-hover:bg-[#42cbcf] flex-shrink-0"
-          >
-            {/* <IoPause className="text-xl" /> */}
-            <IoPlay className="text-l ml-[1px]" />
-          </div>
+        <div className="grid w-full py-2 overflow-y-scroll scrollbar-hide h-96 lg:grid-cols-2 xl:grid-cols-4 gap-x-1 gap-y-8">
+          {realases &&
+            realases.map((release) => (
+              <Poster key={release.id} album={release} />
+            ))}
+          {/*  pagination  */}
+          {/* <div className="flex items-center justify-start space-x-2"> */}
+          {/* {realasesPrevious && ( */}
+          {/* <button */}
+          {/* onClick={() => */}
+          {/* setRealasesOffset(realasesOffset - realasesLimit) */}
+          {/* } */}
+          {/* > */}
+          {/* <IoIosArrowBack className="text-3xl text-blue-300" /> */}
+          {/* </button> */}
+          {/* )} */}
+          {/* {realasesNext && ( */}
+          {/* <button */}
+          {/* onClick={() => */}
+          {/* setRealasesOffset(realasesOffset + realasesLimit) */}
+          {/* } */}
+          {/* > */}
+          {/* <IconNameFaAngleRight /> */}
+          {/* <IoIosArrowForward className="text-3xl text-blue-300" /> */}
+          {/* </button> */}
+          {/* )} */}
+          {/* </div> */}
         </div>
-      </div>
+      </section>
     </>
   );
 }
 
-export default Poster;
+export default Body;

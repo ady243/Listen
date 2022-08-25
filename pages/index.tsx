@@ -25,7 +25,7 @@ function Index() {
     <main>
       <Header session={session} />
       <Sidebar />
-      <Body album={undefined} />
+      <Body session={session} />
       <Right />
     </main>
   );
