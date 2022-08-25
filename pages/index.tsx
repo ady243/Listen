@@ -1,31 +1,34 @@
-import { useSession } from "next-auth/react";
-import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
-import Dashboard from "../components/Dashboard";
+import { useSession } from "next-auth/react";
 import Loader from "../components/Loader";
+import Header from "../components/Header";
+import Body from "../components/Body";
+import Right from "../components/Right";
+import Sidebar from "../components/Sidebar";
 
-function index() {
+function Index() {
+  // Redirection en cas de non connexion
   const router = useRouter();
-
   const { status, data: session } = useSession({
     required: true,
     onUnauthenticated() {
-      router.push("auth/signin");
+      router.push("login");
     },
   });
+
   if (status === "loading") {
     return <Loader />;
   }
 
   return (
-    <div className="">
-      <Head>
-        <title>Listen - Dashboard</title>
-      </Head>
-      <Dashboard />
-    </div>
+    <main>
+      <Header session={session} />
+      <Sidebar />
+      <Body album={undefined} />
+      <Right />
+    </main>
   );
 }
 
-export default index;
+export default Index;

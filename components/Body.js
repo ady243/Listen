@@ -1,96 +1,68 @@
-import Search from "./Search";
-import { useState } from "react";
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
-import { useEffect } from "react";
-import { useSession } from "next-auth/react";
-import Poster from "./Poster";
+import { IoPause, IoPlay } from "react-icons/io5";
 
-function Body({ spotifyApi }) {
-  const { data: session } = useSession();
-  const { accessToken } = session;
-  const [search, setSearch] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  const [newReleases, setNewReleases] = useState([]);
-
-  useEffect(
-    ({}) => {
-      if (!accessToken) return;
-      spotifyApi.setAccessToken(accessToken);
-    },
-    [accessToken]
-  );
-
-  // search...
-
-  useEffect(() => {
-    if (!search) return setSearchResults([]);
-    if (!accessToken) return;
-
-    spotifyApi.searchTracks(search).then((res) => {
-      setSearchResults(
-        res.body.tracks.items.map((track) => {
-          return {
-            id: track.id,
-            artist: track.artists[0].name,
-            title: track.name,
-            uri: track.uri,
-            albumurl: track.album.images[0].url,
-            popularity: track.popularity,
-          };
-        })
-      );
-    });
-  }, [search, accessToken]);
-
-  console.log(searchResults);
-
-  //New Realease...
-
-  useEffect(() => {
-    if (!accessToken) return;
-
-    spotifyApi.getNewReleases().then((res) => {
-      setNewReleases(
-        res.body.albums.items.map((track) => {
-          return {
-            id: track.id,
-            artist: track.artists[0].name,
-            title: track.name,
-            uri: track.uri,
-            albumurl: track.images[0].url,
-            popularity: track.popularity,
-          };
-        })
-      );
-    });
-  }, [accessToken]);
-  console.log(newReleases);
-
+function Poster({ album }) {
   return (
-    <section className="bg-black ml-24 py-4 space-y-8 md:max-w-6xl flex-grow md:mr-2.5">
-      <Search search={setSearch} setSearch={setSearch} />
+    // <div
+    //   className="w-[200] h-[500] rounded-none overflow-hidden relative text-white
+    // cursor-pointer hover:scale-105 hover:text-white/100 transition
+    //  duration-200 ease-out group-mx-auto space-y-3 top-1.5
+    // "
+    // >
+    //   {/* {album.images.map((image) => (
+
+    //   ))} */}
+    //   <div>
+    //     <img
+    //       src={album.url}
+    //       alt=""
+    //       className="absolute inset-0 object-contain w-full h-full groupe-hover:opacity-100"
+    //     />
+    //   </div>
+
+    //   <div className="absolute bottom-10 inset-x-0 ml-4 flex items-center space-x-3.5">
+    //     <div
+    //       className="h-10 w-10 bg-[#42cbcf] rounded-full flex items-center justify-center
+    //     group-hover:bg-[#42cbcf] flex-shrink-0"
+    //     >
+    //       {/* <IoPause className="text-xl" /> */}
+    //       <IoPlay className="text-l ml-[1px]" />
+    //     </div>
+    //   </div>
+    // </div>
+    <>
       <div
-        className="grid grid-cols-2 py-4 overflow-y-scroll 
-      scrollbar-hide h-96 lg:grid-cols-2 xl:grid-cols-4 gap-x-4 gap-y-8"
+        className="w-[200] h-[200] rounded-none overflow-hidden relative text-white
+    cursor-pointer hover:scale-105 hover:text-white/100 transition
+     duration-200 ease-out group-mx-auto space-y-5 top-1.5
+    "
       >
-        {searchResults.length === 0
-          ? newReleases.slice(0, 4).map((track) => (
-              <Poster
-                key={track.id}
-                track={track}
-                //  chooseTrack={chooseTrack}
-              />
-            ))
-          : searchResults.slice(0, 4).map((track) => (
-              <Poster
-                key={track.id}
-                track={track}
-                //  chooseTrack={chooseTrack}
-              />
-            ))}
+        <h2> {album.name} </h2>
+        {/*show all images*/}
+        {album.images.map((image) => (
+          // eslint-disable-next-line react/jsx-key, @next/next/no-img-element
+          <img
+            src={image.url}
+            alt=""
+            width={500}
+            height={500}
+            className="absolute object-contain w-full h-full inset-1 groupe-hover:opacity-100"
+          />
+        ))}
+
+        <div className="absolute bottom-10 inset-x-0 ml-4 flex items-center space-x-3.5">
+          <div
+            className="h-10 w-10 bg-[#42cbcf] rounded-full flex items-center justify-center
+        group-hover:bg-[#42cbcf] flex-shrink-0"
+          >
+            {/* <IoPause className="text-xl" /> */}
+            <IoPlay className="text-l ml-[1px]" />
+          </div>
+        </div>
       </div>
-    </section>
+    </>
   );
 }
 
-export default Body;
+export default Poster;
