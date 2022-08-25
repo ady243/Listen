@@ -14,4 +14,14 @@
   .sidebarIcon {
     @apply h-6 text-[#808080] cursor-pointer;
   }
+
+  .genre {
+    @apply bg-[#101010] text-[#CECECE] border border-[#484848] rounded-xl py-2.5 px-3.5 text-[11px] font-bold cursor-default grid-cols-4;
+  }
+  .btn {
+    @apply text-[#0e0e0e] bg-[#1ab9d4] text-[13px] py-3.5 px-4 rounded-2xl w-full font-bold bg-opacity-80 hover:bg-opacity-100 transition ease-out;
+  }
+  .img {
+    @apply bg-no-repeat;
+  }
 }

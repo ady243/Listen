@@ -7,7 +7,7 @@ export const playState = atom({
 });
 // const [play, setPlay] = useState(false);
 
-export const playingTrackState = atom({
-  key: "playingTrackState",
+export const playingAlbumState = atom({
+  key: "playingAlbumState",
   default: "",
 });

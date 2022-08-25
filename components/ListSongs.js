@@ -6,9 +6,9 @@ function ListSongs({ songs, loading, error }) {
     return <Loader />;
   }
 
-  if (error) {
-    return <div>Error: {props.error.message}</div>;
-  }
+  // if (error) {
+  //   return <div>Error: {props.error.message}</div>;
+  // }
 
   if (songs.length === 0) {
     return null;
