@@ -18,7 +18,7 @@ function Poster({ album, chooseAlbum }) {
     <div
       className="w-[200] h-[200] rounded-lg overflow-hidden relative text-white
     cursor-pointer hover:scale-105 hover:text-white/100 transition
-     duration-200 ease-out group-mx-auto space-y-5 top-1.5
+     duration-200 ease-out group-mx-auto space-y-5 top-5
     "
       onClick={handlePlay}
     >

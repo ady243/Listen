@@ -55,6 +55,8 @@ function Body({ session, chooseAlbum }) {
     }
   }, [realasesLimit, realasesOffset, session, user]);
 
+  console.log(realases);
+
   //  useeffect pour la pagination
   useEffect(() => {
     if (!user) {
@@ -169,7 +171,7 @@ function Body({ session, chooseAlbum }) {
               className="space-y-3 border-2 border-[#262626] rounded-2xl p-3 bg-[#0D0D0D]
             overflow-thumb-rounded hover:scrollbar-thumb-gray-500 w-[830px] "
             >
-              {realases &&
+              {realases.slice(4, Song.length) &&
                 realases.map((release) => (
                   <Song
                     key={release.id}

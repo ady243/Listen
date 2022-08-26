@@ -29,8 +29,8 @@ function Index() {
   }
 
   return (
-    <main>
-      <Header session={session} />
+    <main className="min-h-screen min-w-screen min-w-max b-black lg:pb-24 ">
+      <Header />
       <Sidebar />
       <Body session={session} chooseAlbum={chooseAlbum} />
       <Right />

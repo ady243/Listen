@@ -3,7 +3,6 @@ import { AiFillHeart } from "react-icons/ai";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { playingAlbumState, playState } from "../atoms/playerAtoms";
-import { ImHeadphones } from "react-icons/im";
 
 function Song({ album, chooseAlbum }) {
   const [hasLiked, setHasLiked] = useState(false);
@@ -19,14 +18,13 @@ function Song({ album, chooseAlbum }) {
   };
 
   return (
-    <div className="grid items-center justify-between px-4 py-2 space-x-20 transition ease-out rounded-lg cursor-default hover:bg-white/10 group">
-      <div className="flex items-center">
+    <div className="flex items-center justify-between grid-cols-4 px-4 py-2 space-x-20 transition ease-out rounded-lg cursor-default hover:bg-white/10 ">
+      <div className="flex items-center ">
         {album.images.map((album) => (
           // eslint-disable-next-line react/jsx-key, @next/next/no-img-element
           <img
             src={album.url}
-            alt=""
-            className="inset-0 object-cover w-12 h-12 mr-3 rounded-xl"
+            className="flex object-contain h-12 mr-3 rounded-none"
           />
         ))}
 
@@ -40,7 +38,7 @@ function Song({ album, chooseAlbum }) {
         </div>
       </div>
 
-      <div className="flex items-center -space-y-39 space-x-80 md:ml-auto">
+      <div className="flex items-center md:ml-auto">
         <div className="flex -space-y-38.5 space-x-80 text-sm font-semibold text-white">
           <h4 className="font-sans">{album.popularity}</h4>
         </div>
