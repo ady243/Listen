@@ -6,21 +6,16 @@ function ListSongs({ songs, loading, error }) {
     return <Loader />;
   }
 
-  // if (error) {
-  //   return <div>Error: {props.error.message}</div>;
-  // }
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   if (songs.length === 0) {
-    return null;
+    return <div className="text-blue-400">Aucun résultat</div>;
   }
 
   return (
-    <div
-      className="grid h-full grid-cols-4 px-6 ml-24 space-y-8
-       text-white transition duration-200 ease-out
-       bg-black md:max-w-6xl md:mr-2 hover:text-white/100
-        group-mx-auto  top-1.5"
-    >
+    <div className="grid grid-cols-1 gap-5 p-10 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
       {songs.map((song) => (
         <Song key={song.id} song={song} />
       ))}

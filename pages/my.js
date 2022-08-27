@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
@@ -8,7 +7,6 @@ import Right from "../components/Right";
 import Sidebar from "../components/Sidebar";
 import SpotifyWebApi from "spotify-web-api-node";
 import ListSongs from "../components/ListSongs";
-import { HiHeart } from "react-icons/hi";
 
 // TODO: il faut exporter ça quelque part pour éviter de le déclarer dans tous les composants
 const spotifyApi = new SpotifyWebApi({
@@ -75,12 +73,9 @@ function MyFavourites() {
 
       {/* Ici j'ai pas utilisé le Body, il faut trouver un moyen de l'utiliser partout */}
       <section className="bg-black text-white ml-24 py-4 space-y-8 md:max-w-6xl flex-grow md:mr-2.5">
-        <h1 className="space-y-2 text-2xl">
-          <HiHeart className="text-[rgb(255,51,51)]" /> Mes favoris
-        </h1>
+        <h1 className="text-2xl">Mes favoris</h1>
         {songs && songs.length > 0 ? (
           //  J'utilise le même composant que sur la page d'accueil vu que ce sont des sons aussi
-
           <ListSongs songs={songs} loading={loading} error={error} />
         ) : (
           <p>Aucun son enregistré</p>

@@ -1,44 +1,39 @@
-import { useRouter } from "next/router";
-import React from "react";
-import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import { getSession, signIn } from "next-auth/react";
 import Loader from "../components/Loader";
 import Header from "../components/Header";
 import Body from "../components/Body";
 import Right from "../components/Right";
 import Sidebar from "../components/Sidebar";
-import { useRecoilState } from "recoil";
-import { playingAlbumState } from "../atoms/playerAtoms";
 
 function Index() {
-  // Redirection en cas de non connexion
+  const [loading, setLoading] = useState(true);
 
-  const [playingAlbum, setPlayingAlbum] = useRecoilState(playingAlbumState);
-  const router = useRouter();
-  const chooseAlbum = (track: any) => {
-    setPlayingAlbum(track);
-  };
-  const { status, data: session } = useSession({
-    required: true,
-    onUnauthenticated() {
-      router.push("login");
-    },
-  });
+  useEffect(() => {
+    const securePage = async () => {
+      const session = await getSession();
+      if (!session) {
+        setLoading(false);
+        signIn();
+      } else {
+        setLoading(false);
+      }
+    };
+    securePage();
+  }, []);
 
-  if (status === "loading") {
+  if (loading) {
     return <Loader />;
   }
 
   return (
-    <main className="min-h-screen min-w-screen min-w-max b-black lg:pb-24 ">
+    <>
       <Header />
       <Sidebar />
-      <Body session={session} chooseAlbum={chooseAlbum} />
+      <Body />
       <Right />
-    </main>
+    </>
   );
 }
 
 export default Index;
-// function setPlayingTrack(track: any) {
-//   throw new Error("Function not implemented.");
-// }

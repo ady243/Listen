@@ -1,75 +1,51 @@
-import { BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
-import { AiFillHeart } from "react-icons/ai";
+import { IoPlay } from "react-icons/io5";
 import { useState } from "react";
-import { useRecoilState } from "recoil";
-import { playingAlbumState, playState } from "../atoms/playerAtoms";
 
-function Song({ album, chooseAlbum }) {
-  const [hasLiked, setHasLiked] = useState(false);
-  const [play, setPlay] = useRecoilState(playState);
-  const [playingAlbum, setPlayingAlbum] = useRecoilState(playingAlbumState);
-
-  const handlePlay = () => {
-    chooseAlbum(album);
-
-    if (album.uri === playingAlbum.url) {
-      setPlay(!play);
-    }
-  };
+function Song({ song }) {
+  let [image, setImage] = useState(null);
+  // check if image is available and define the image url
+  if (
+    "album" in song &&
+    "images" in song.album &&
+    song.album.images.length > 0
+  ) {
+    image = song.album.images[0];
+  }
 
   return (
-    <div className="flex items-center justify-between grid-cols-4 px-4 py-2 space-x-20 transition ease-out rounded-lg cursor-default hover:bg-white/10 ">
-      <div className="flex items-center ">
-        {album.images.map((album) => (
-          // eslint-disable-next-line react/jsx-key, @next/next/no-img-element
-          <img
-            src={album.url}
-            className="flex object-contain h-12 mr-3 rounded-none"
-          />
-        ))}
-
-        <div>
-          <h4 className="text-white text-sm font-semibold truncate w-[450px]">
-            {album.name}
-          </h4>
-          <p className="text-[rgb(179,179,179)] text-[13px] font-semibold group-hover:text-white">
-            {album.artist}
-          </p>
-        </div>
+    <div className="overflow-hidden rounded shadow-lg bg-amber-50">
+      {image && (
+        <img
+          src={image.url}
+          alt=""
+          height={image.height}
+          width={image.width}
+          className="w-full"
+        />
+      )}
+      <div className="px-6 py-4">
+        <div className="mb-2 text-xl font-bold text-black">{song.name}</div>
+        <p className="text-base text-gray-700">
+          {song.artists.map((artist) => artist.name).join(", ")}
+        </p>
       </div>
-
-      <div className="flex items-center md:ml-auto">
-        <div className="flex -space-y-38.5 space-x-80 text-sm font-semibold text-white">
-          <h4 className="font-sans">{album.popularity}</h4>
-        </div>
-        <div className="flex items-center rounded-full border-2 border-[#262626] w-[85px] h-10 relative cursor-pointer group-hover:border-white/40">
-          <AiFillHeart
-            className={`text-xl ml-3 icon space-y-4 ${
-              hasLiked ? "text-[hsl(0,83%,54%)]" : "text-[#868686]"
-            }`}
-            onClick={() => setHasLiked(!hasLiked)}
-          />
-          {album.url === playingAlbum.url && play ? (
-            <>
-              <div
-                className="h-10 w-10 rounded-full border border-[hsl(193,73%,58%)] flex items-center justify-center absolute -right-0.5 bg-[#15883e] icon hover:scale-110"
-                onClick={handlePlay}
-              >
-                <BsFillPauseFill className="text-xl text-white" />
-              </div>
-            </>
-          ) : (
-            <>
-              <div
-                className="h-10 w-10 rounded-full border border-white/60 flex items-center justify-center absolute -right-0.5 hover:bg-[#15883e] hover:border-[#15883e] icon hover:scale-110"
-                onClick={handlePlay}
-              >
-                <BsFillPlayFill className="text-white text-xl ml-[1px] " />
-              </div>
-            </>
-          )}
-        </div>
+      {/* music player */}
+      <div
+        className="h-10 w-10 bg-[#42cbcf] rounded-full flex items-center justify-center
+    group-hover:bg-[#42cbcf] flex-shrink-0"
+      >
+        <button>
+          <IoPlay className="text-l ml-[1px]" />
+        </button>
       </div>
+      {/*<div className="px-6 pt-4 pb-2">*/}
+      {/*    <span*/}
+      {/*        className="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">#photography</span>*/}
+      {/*    <span*/}
+      {/*        className="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">#travel</span>*/}
+      {/*    <span*/}
+      {/*        className="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">#winter</span>*/}
+      {/*</div>*/}
     </div>
   );
 }

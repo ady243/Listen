@@ -1,4 +1,4 @@
-import NextAuth from "next-auth/next";
+import NextAuth from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
 
 async function refreshAccessToken(token) {
