@@ -8,7 +8,6 @@ import Sidebar from "../components/Sidebar";
 import SpotifyWebApi from "spotify-web-api-node";
 import ListSongs from "../components/ListSongs";
 
-// TODO: il faut exporter ça quelque part pour éviter de le déclarer dans tous les composants
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
   clientSecret: process.env.SPOTIFY_CLIENT_SECRET,

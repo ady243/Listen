@@ -11,7 +11,11 @@ function ListSongs({ songs, loading, error }) {
   }
 
   if (songs.length === 0) {
-    return <div className="text-blue-400">Aucun résultat</div>;
+    return (
+      <div className="text-blue-400 animate-bounce border-hidden">
+        Aucun résultat
+      </div>
+    );
   }
 
   return (
