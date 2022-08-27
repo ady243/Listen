@@ -1,10 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
+import { playingAlbumState, playState } from "../atoms/playerAtoms";
 import { IoPause, IoPlay } from "react-icons/io5";
 
 function Album(props) {
   const { album } = props;
-
   const image = album.images[0];
+  const [play, setPlay] = useRecoilState(playState);
+  const [playingAlbum, setPlayingAlbum] = useRecoilState(playingAlbumState);
+
+  const handlePlay = () => {
+    chooseAlbum(album);
+    if (album.url === playingAlbum.url) {
+      setPlay(!play);
+    }
+  };
 
   return (
     <div
@@ -12,6 +21,7 @@ function Album(props) {
             cursor-pointer hover:scale-105 hover:text-white/100 transition
             duration-200 ease-out group-mx-auto space-y-5 top-1.5
         "
+      onClick={handlePlay}
     >
       <img
         src={image.url}
@@ -26,13 +36,16 @@ function Album(props) {
           className="h-10 w-10 bg-[#42cbcf] rounded-full flex items-center justify-center
         group-hover:bg-[#42cbcf] flex-shrink-0"
         >
-          <IoPlay className="text-l ml-[1px]" />
+          {/* <IoPlay className="text-l ml-[1px]" /> */}
+          {album.url === playingAlbum.url && play ? (
+            <IoPause className="text-xl" />
+          ) : (
+            <IoPlay className="text-l ml-[1px]" />
+          )}
         </div>
         <div>
           <h2 className="text-[20px] uppercase rounded-full">{album.name}</h2>
-          <h4 className=" text-[15px] uppercase rounded-full font-extrabold ">
-            {album.artists[0].name}
-          </h4>
+          <h4 className=" text-[15px] uppercase rounded-full font-extrabold "></h4>
         </div>
       </div>
     </div>

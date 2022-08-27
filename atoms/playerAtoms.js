@@ -11,3 +11,9 @@ export const playingSongState = atom({
   key: "playingSongState",
   default: "",
 });
+
+
+export const playingAlbumState = atom({
+  key: "playingAlbumState",
+  default: "",
+});
