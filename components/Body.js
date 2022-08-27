@@ -1,4 +1,3 @@
-import Poster from "./Poster";
 import { useAppContext } from "../src/context/state";
 import { useEffect, useState } from "react";
 import SearchArea from "./SearchArea";
@@ -22,7 +21,7 @@ function Body() {
   const [releasesTotal, setReleasesTotal] = useState(0);
   const [releasesNext, setReleasesNext] = useState(null);
   const [releasesPrevious, setReleasesPrevious] = useState(null);
-  const [releasesLimit, setReleasesLimit] = useState(10);
+  const [releasesLimit, setReleasesLimit] = useState(20);
   const [releasesOffset, setReleasesOffset] = useState(0);
   const [releasesPage, setReleasesPage] = useState(1);
   const [releasesPages, setReleasesPages] = useState(1);
