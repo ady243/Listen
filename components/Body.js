@@ -102,7 +102,8 @@ function Body() {
       {/*<Poster/>*/}
 
       <div className="">
-        <Albums
+        <Albums />
+        {/* <Albums
           albums={releases}
           loading={releasesLoading}
           error={releasesError}
@@ -115,7 +116,7 @@ function Body() {
           pages={releasesPages}
           onPageChange={handlePageChange}
           onLimitChange={handleLimitChange}
-        />
+        /> */}
       </div>
       <div className="absolute flex min-w-full ml-6 gap-x-8 md:relative">
         <div className="hidden xl:inline max-w-[270px]">
