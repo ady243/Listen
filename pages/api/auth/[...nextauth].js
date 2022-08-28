@@ -1,4 +1,5 @@
-import NextAuth from "next-auth";
+import NextAuth from "next-auth/next";
+
 import SpotifyProvider from "next-auth/providers/spotify";
 
 async function refreshAccessToken(token) {
@@ -44,15 +45,14 @@ async function refreshAccessToken(token) {
 export default NextAuth({
   providers: [
     SpotifyProvider({
-      clientId: process.env.SPOTIFY_CLIENT_ID,
-      clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
       authorization:
         "https://accounts.spotify.com/authorize?scope=user-read-email,playlist-read-private,user-read-email,streaming,user-read-private,user-library-read,user-library-modify,user-read-playback-state,user-modify-playback-state,user-read-recently-played,user-follow-read",
+      clientId: process.env.SPOTIFY_CLIENT_ID,
+      clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     }),
   ],
-
   pages: {
-    signIn: "/auth/signin",
+    signIn: "/login",
   },
   callbacks: {
     async jwt({ token, user, account }) {

@@ -1,19 +1,23 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import Loader from "../components/Loader";
 import Header from "../components/Header";
+import Body from "../components/Body";
 import Right from "../components/Right";
 import Sidebar from "../components/Sidebar";
 import SpotifyWebApi from "spotify-web-api-node";
 import ListSongs from "../components/ListSongs";
 
+// TODO: il faut exporter ça quelque part pour éviter de le déclarer dans tous les composants
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
   clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
 });
 
 function MyFavourites() {
+
   const router = useRouter();
   const { status, data: session } = useSession({
     required: true,
@@ -75,7 +79,11 @@ function MyFavourites() {
         <h1 className="text-2xl">Mes favoris</h1>
         {songs && songs.length > 0 ? (
           //  J'utilise le même composant que sur la page d'accueil vu que ce sont des sons aussi
-          <ListSongs songs={songs} loading={loading} error={error} />
+          <ListSongs
+            songs={songs}
+            loading={loading}
+            error={error}
+          />
         ) : (
           <p>Aucun son enregistré</p>
         )}

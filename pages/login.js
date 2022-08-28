@@ -2,18 +2,10 @@ import { getProviders, getSession, signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import {useAppContext} from "../src/context/state";
+import {useEffect, useState} from "react";
 
 export default function SignIn({ providers }) {
-  const { data: session } = useSession();
-
-  /*
-   Si l'utlisateur est déjà connecté, on le redirige vers la page d'accueil
-   TODO: ATTENTION: Il ne faut surtout pas faire ça ici ça crée à nouveau la page du coup il faut trouver une autre solution
-   */
-  const router = useRouter();
-  if (session) {
-    return router.push("/");
-  }
 
   return (
     <>
@@ -38,7 +30,7 @@ export default function SignIn({ providers }) {
                 className="text-white py-4 px-6 rounded-full bg-[#4dbbedfa] transition duration-300 ease-out
             border border-transparent uppercase font-bold text-xl
             md:text-base tracking-wider hover:scale-105 hover:bg-inherit space-x-10"
-                onClick={() => signIn(provider.id)}
+                onClick={() => signIn( provider.id , { callbackUrl: "/" } )}
               >
                 Sign in with {provider.name}
               </button>
@@ -51,18 +43,19 @@ export default function SignIn({ providers }) {
 }
 
 export async function getServerSideProps(context) {
-  console.log(context.req);
-  const session = await getSession(context.req);
+  // console.log(context.req);
+  // const session = await getSession(context.req);
   // TODO: j'ai tenté la redirection ici mais je n'arrive pas à le faire fonctionner , A revoir
-  if (session) {
-    return {
-      redirect: {
-        destination: "/",
-      },
-    };
-  }
+  // if (session) {
+  //   return {
+  //     redirect: {
+  //       destination: "/",
+  //     }
+  //   };
+  // }
 
   return {
     props: { providers: await getProviders() },
   };
+
 }

@@ -1,7 +1,8 @@
-import { signIn, signOut, useSession } from "next-auth/react";
+import {signIn, signOut, useSession} from "next-auth/react";
 
 function Header() {
-  const { data: session, loading } = useSession();
+
+  const {data: session, loading} = useSession();
 
   return (
     <header>
