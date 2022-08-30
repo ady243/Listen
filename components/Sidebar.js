@@ -16,13 +16,16 @@ function Sidebar() {
       />
 
       <div className="flex flex-col space-y-8">
-          <Link href="/" className="flex items-center space-x-3">
-              <IoHome className="text-4xl text-white siderbarIcon cursor-pointer" />
-          </Link>
-          <Link href="/my" className="flex items-center space-x-3">
-              <IoHeart className="text-4xl text-white siderbarIcon cursor-pointer" />
-          </Link>
-          <IoAddOutline className="text-4xl text-white siderbarIcon cursor-pointer" />
+        <Link href="/" className="flex items-center space-x-3">
+          <IoHome className="text-4xl text-white cursor-pointer siderbarIcon" />
+        </Link>
+        <Link href="Decouv" className="flex items-center space-x-3">
+          <IoCompass className="text-4xl text-white cursor-pointer siderbarIcon" />
+        </Link>
+        <Link href="/my" className="flex items-center space-x-3">
+          <IoHeart className="text-4xl text-white cursor-pointer siderbarIcon" />
+        </Link>
+        <IoAddOutline className="text-4xl text-white cursor-pointer siderbarIcon" />
       </div>
     </section>
   );

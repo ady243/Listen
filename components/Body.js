@@ -1,11 +1,11 @@
-import Poster from "./Poster";
 import { useAppContext } from "../src/context/state";
 import { useEffect, useState } from "react";
 import SearchArea from "./SearchArea";
 import spotifyApi from "../src/api/spotifyApi";
 import Albums from "./Albums";
+import Song from "./Song";
 
-function Body() {
+function Body({ song }) {
   const { session, status } = useAppContext();
 
   const [user, setUser] = useState(null);
@@ -58,6 +58,9 @@ function Body() {
   const handlePageChange = (page) => {
     setReleasesPage(page);
     setReleasesOffset((page - 1) * releasesLimit);
+  };
+  const handlePlay = () => {
+    setPlayingAlbum(1);
   };
 
   const handleLimitChange = (limit) => {

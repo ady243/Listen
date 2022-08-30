@@ -16,8 +16,3 @@ export const playingAlbumState = atom({
   key: "playingAlbumState",
   default: "",
 });
-
-export const playingAlbumsState = atom({
-  key: "playingAlbumsState",
-  default: "",
-});
