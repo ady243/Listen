@@ -2,11 +2,10 @@ import { getProviders, getSession, signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import {useAppContext} from "../src/context/state";
-import {useEffect, useState} from "react";
+import { useAppContext } from "../src/context/state";
+import { useEffect, useState } from "react";
 
 export default function SignIn({ providers }) {
-
   return (
     <>
       <div className="flex flex-col items-center h-screen space-y-0 bg-black pt-25">
@@ -19,7 +18,6 @@ export default function SignIn({ providers }) {
           height={600}
           top={400}
           objectFit="contain"
-          className="animate-pulse"
           alt="Listen"
         />
 
@@ -30,7 +28,7 @@ export default function SignIn({ providers }) {
                 className="text-white py-4 px-6 rounded-full bg-[#4dbbedfa] transition duration-300 ease-out
             border border-transparent uppercase font-bold text-xl
             md:text-base tracking-wider hover:scale-105 hover:bg-inherit space-x-10"
-                onClick={() => signIn( provider.id , { callbackUrl: "/" } )}
+                onClick={() => signIn(provider.id, { callbackUrl: "/" })}
               >
                 Sign in with {provider.name}
               </button>
@@ -57,5 +55,4 @@ export async function getServerSideProps(context) {
   return {
     props: { providers: await getProviders() },
   };
-
 }

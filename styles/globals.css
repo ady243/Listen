@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    @apply bg-black font-body scrollbar-hide;
+    @apply w-full h-full bg-black font-body scrollbar-hide;
   }
 }
 
@@ -23,5 +23,23 @@
   }
   .img {
     @apply bg-no-repeat;
+  }
+}
+@media only screen {
+  body {
+    background-color: black;
+    text-decoration: none;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-style: initial;
+
+    margin-right: 10px;
+    align-items: center;
+  }
+  .logi {
+    margin-left: 300px;
+    height: 40px;
+    width: 40%;
+    position: relative;
+    margin-top: 10px;
   }
 }

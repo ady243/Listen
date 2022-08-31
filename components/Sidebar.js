@@ -5,13 +5,13 @@ import Link from "next/link";
 
 function Sidebar() {
   return (
-    <section className="fixed top-0 z-40 flex-col items-center p-4 bg-black w-[90px] h-screen space-y-8">
+    <section className="fixed -top-1 z-40 flex-col items-center p-4 bg-black w-[85px]  space-y-8 h-screen ">
       <Image
         src="https://zupimages.net/up/22/33/khud.jpeg"
         width={90}
         height={95}
         objectFit="contain"
-        className="animate-pulse"
+        className=""
         alt="Listen"
       />
 
