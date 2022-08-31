@@ -5,7 +5,7 @@ import Link from "next/link";
 
 function Sidebar() {
   return (
-    <section className="fixed -top-1 z-40 flex-col items-center p-4 bg-black w-[85px]  space-y-8 h-screen ">
+    <section className="fixed -top-1 z-40 flex-col justify-around p-4 bg-black w-[85px]  space-y-8 h-full ">
       <Image
         src="https://zupimages.net/up/22/33/khud.jpeg"
         width={90}
