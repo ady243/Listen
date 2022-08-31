@@ -1,9 +1,6 @@
-import { getProviders, getSession, signIn, useSession } from "next-auth/react";
+import { getProviders, signIn } from "next-auth/react";
 import Image from "next/image";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import { useAppContext } from "../src/context/state";
-import { useEffect, useState } from "react";
 
 export default function SignIn({ providers }) {
   return (
@@ -41,17 +38,6 @@ export default function SignIn({ providers }) {
 }
 
 export async function getServerSideProps(context) {
-  // console.log(context.req);
-  // const session = await getSession(context.req);
-  // TODO: j'ai tenté la redirection ici mais je n'arrive pas à le faire fonctionner , A revoir
-  // if (session) {
-  //   return {
-  //     redirect: {
-  //       destination: "/",
-  //     }
-  //   };
-  // }
-
   return {
     props: { providers: await getProviders() },
   };

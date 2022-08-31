@@ -58,9 +58,6 @@ function Body() {
     setReleasesPage(page);
     setReleasesOffset((page - 1) * releasesLimit);
   };
-  const handlePlay = () => {
-    setPlayingAlbum(1);
-  };
 
   const handleLimitChange = (limit) => {
     setReleasesLimit(limit);
@@ -78,7 +75,6 @@ function Body() {
         </h1>
       </div>
 
-      {/*<div className="">*/}
       <Albums
         albums={releases}
         loading={releasesLoading}
@@ -93,7 +89,6 @@ function Body() {
         onPageChange={handlePageChange}
         onLimitChange={handleLimitChange}
       />
-      {/*</div> for design*/}
     </section>
   );
 }

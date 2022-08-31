@@ -19,7 +19,7 @@ function Sidebar() {
         <Link href="/" className="flex items-center space-x-3">
           <IoHome className="text-4xl text-white cursor-pointer siderbarIcon" />
         </Link>
-        <Link href="Decouv" className="flex items-center space-x-3">
+        <Link href="#" className="flex items-center space-x-3">
           <IoCompass className="text-4xl text-white cursor-pointer siderbarIcon" />
         </Link>
         <Link href="/my" className="flex items-center space-x-3">

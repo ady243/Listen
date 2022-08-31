@@ -1,4 +1,4 @@
-import { IoPause, IoPlay } from "react-icons/io5";
+import { IoPlay } from "react-icons/io5";
 import Image from "next/image";
 
 function Album(props) {

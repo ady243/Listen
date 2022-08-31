@@ -1,9 +1,4 @@
-import { IoLogOut } from "react-icons/io5";
-import { useSession } from "next-auth/react";
-
 function SearchBar({ search, setSearch }) {
-  const { data: session, loading } = useSession();
-
   return (
     <>
       <div

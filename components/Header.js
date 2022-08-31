@@ -1,6 +1,6 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import { IoLogOut } from "react-icons/io5";
-import Right from "./Right";
+
 import SearchArea from "./SearchArea";
 
 function Header() {
@@ -12,10 +12,8 @@ function Header() {
         <SearchArea />
 
         <div className="flex w-full lg:flex lg:items-center lg:w-auto">
-          {/* <div className="text-sm lg:flex-grow"></div> */}
           <div className="px-20 lg:flex-grow ">
             <div className="logi">
-              {/* Bref dans l'idée c'est de faire un logout ici */}
               {session && (
                 <a
                   href="#"
@@ -26,7 +24,7 @@ function Header() {
                 </a>
               )}
 
-              {/* {!loading && !session && (
+              {!loading && !session && (
                 <a
                   href="#"
                   onClick={() => signIn()}
@@ -34,7 +32,7 @@ function Header() {
                 >
                   Sign In
                 </a>
-              )} */}
+              )}
             </div>
           </div>
         </div>
