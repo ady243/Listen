@@ -8,7 +8,6 @@ function Player() {
 
   useEffect(() => {
     if (status === "authenticated" && session) {
-      console.log("ok");
     }
   }, [session, status, songUri, play]);
 

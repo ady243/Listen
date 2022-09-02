@@ -169,7 +169,7 @@ function ShowAlbum() {
         )}
       </div>
       <Player />
-      <Body />
+
       <Right />
     </>
   );

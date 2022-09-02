@@ -17,7 +17,6 @@ function Song({ song }) {
 
   const handleChange = () => {
     setPlaySong(!playSong);
-
     setSongUri(song.uri);
     setPlay(playSong);
   };
@@ -73,7 +72,6 @@ function Song({ song }) {
           )}
         </button>
       </div>
-      {/* <SpotifyPlayer token={session.accessToken} uris={song.uri} play={play} /> */}
     </div>
   );
 }
