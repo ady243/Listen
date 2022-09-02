@@ -8,6 +8,7 @@ import Sidebar from "../../components/Sidebar";
 import Player from "../../components/Player";
 import Right from "../../components/Right";
 import Image from "next/image";
+import Body from "../../components/Body";
 
 function ShowAlbum() {
   const router = useRouter();
@@ -58,7 +59,7 @@ function ShowAlbum() {
   const [tracksTotal, setTracksTotal] = useState(0);
   const [tracksNext, setTracksNext] = useState(null);
   const [tracksPrevious, setTracksPrevious] = useState(null);
-  const [tracksLimit, setTracksLimit] = useState(10);
+  const [tracksLimit, setTracksLimit] = useState(20);
   const [tracksOffset, setTracksOffset] = useState(0);
   const [tracksPage, setTracksPage] = useState(1);
   const [tracksPages, setTracksPages] = useState(1);
@@ -168,6 +169,7 @@ function ShowAlbum() {
         )}
       </div>
       <Player />
+      <Body />
       <Right />
     </>
   );

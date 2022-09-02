@@ -33,6 +33,7 @@ function Index() {
       <Sidebar />
       <Body />
       <Right />
+      <Player />
     </>
   );
 }

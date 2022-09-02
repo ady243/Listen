@@ -20,6 +20,8 @@ function SearchBar({ search, setSearch }) {
           placeholder="Recherche.."
         />
       </div>
+      <br></br>
+      <br></br>
     </>
   );
 }

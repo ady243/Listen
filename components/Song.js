@@ -1,7 +1,7 @@
 import { IoPlay, IoPause } from "react-icons/io5";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import SpotifyPlayer from "react-spotify-web-playback";
+
 import { useAppContext } from "../src/context/state";
 
 function Song({ song }) {
@@ -33,8 +33,7 @@ function Song({ song }) {
   }
 
   return (
-    <div className="items-center rounded shadow-lg  bg-[rgb(255,255,255)]  m-65 block justify-between">
-      <br></br>
+    <div className="items-center rounded  bg-[rgb(255,255,255)]  m-50 block justify-between">
       {image && (
         <Image
           src={image.url}
