@@ -67,6 +67,7 @@ function Body() {
 
   return (
     <section className="bg-black ml-24 py-4 space-x-8 md:max-w-9xl  md:mr-2.5 -top-40 w-100 h-100 block">
+      <br></br>
       <SearchArea />
       <br></br>
       <div>

@@ -48,15 +48,16 @@ function Song({ song }) {
           {song.artists.map((artist) => artist.name).join(", ")}
         </p>
       </div>
-      <>
+      {/* <>
         <SpotifyPlayer
           token={session.accessToken}
           uris={song.uri}
-          play={play}
+          play={!play}
+          onClick={handleChange}
         />
-      </>
+      </> */}
       {/* music player */}
-      <div
+      {/* <div
         className="h-10 bg-[#42cbcf] rounded-[10px]   justify-center
       group-hover:bg-[#42cbcf] flex-shrink-0 relative flex"
       >
@@ -67,7 +68,13 @@ function Song({ song }) {
             <IoPlay className="text-xl" />
           )}
         </button>
-      </div>
+      </div> */}
+      <SpotifyPlayer
+        token={session.accessToken}
+        uris={song.uri}
+        play={!play}
+        //onClick={handleChange}
+      />
     </div>
   );
 }
