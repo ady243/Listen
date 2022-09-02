@@ -4,15 +4,15 @@ import SpotifyProvider from "next-auth/providers/spotify";
 
 async function refreshAccessToken(token) {
   try {
-    // const url = "https://accounts.spotify.com/api/token?";
-    const url =
-      "https://spotify-refresh-token-generator.netlify.app" +
-      new URLSearchParams({
-        client_id: process.env.SPOTIFY_CLIENT_ID,
-        client_secret: process.env.SPOTIFY_CLIENT_SECRET,
-        grant_type: "refresh_token",
-        refresh_token: token.refreshToken,
-      });
+    const url = "https://accounts.spotify.com/api/token?";
+    // const url =
+    //   "https://spotify-refresh-token-generator.netlify.app" +
+    new URLSearchParams({
+      client_id: process.env.SPOTIFY_CLIENT_ID,
+      client_secret: process.env.SPOTIFY_CLIENT_SECRET,
+      grant_type: "refresh_token",
+      refresh_token: token.refreshToken,
+    });
 
     const response = await fetch(url, {
       headers: {

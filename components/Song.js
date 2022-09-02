@@ -73,7 +73,7 @@ function Song({ song }) {
         token={session.accessToken}
         uris={song.uri}
         play={!play}
-        //onClick={handleChange}
+        // onClick={handleChange}
       />
     </div>
   );
