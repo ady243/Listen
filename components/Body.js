@@ -21,7 +21,7 @@ function Body() {
   const [releasesTotal, setReleasesTotal] = useState(0);
   const [releasesNext, setReleasesNext] = useState(null);
   const [releasesPrevious, setReleasesPrevious] = useState(null);
-  const [releasesLimit, setReleasesLimit] = useState(16);
+  const [releasesLimit, setReleasesLimit] = useState(32);
   const [releasesOffset, setReleasesOffset] = useState(0);
   const [releasesPage, setReleasesPage] = useState(1);
   const [releasesPages, setReleasesPages] = useState(1);

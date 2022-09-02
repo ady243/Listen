@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import ListSongs from "../../components/ListSongs";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
+import Player from "../../components/Player";
 import Right from "../../components/Right";
 import Image from "next/image";
 
@@ -166,6 +167,7 @@ function ShowAlbum() {
           </div>
         )}
       </div>
+      <Player />
       <Right />
     </>
   );

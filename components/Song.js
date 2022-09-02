@@ -5,8 +5,9 @@ import SpotifyPlayer from "react-spotify-web-playback";
 import { useAppContext } from "../src/context/state";
 
 function Song({ song }) {
-  const [play, setPlay] = useState(false);
-  const { session, status } = useAppContext();
+  const [playSong, setPlaySong] = useState(false);
+  const { session, status, songUri, setSongUri, play, setPlay } =
+    useAppContext();
 
   useEffect(() => {
     if (status === "authenticated" && session) {
@@ -14,8 +15,11 @@ function Song({ song }) {
     }
   }, [session, status]);
 
-  const handleChange = (e) => {
-    setPlay(!play);
+  const handleChange = () => {
+    setPlaySong(!playSong);
+
+    setSongUri(song.uri);
+    setPlay(playSong);
   };
   let [image] = useState(null);
 
@@ -57,25 +61,20 @@ function Song({ song }) {
           onClick={handleChange}
         />
       </> */}
-      {/* music player */}
-      {/* <div
+
+      <div
         className="h-10 bg-[#42cbcf] rounded-[10px]   justify-center
       group-hover:bg-[#42cbcf] flex-shrink-0 relative flex"
       >
         <button onClick={handleChange}>
-          {play ? (
+          {playSong ? (
             <IoPause className="text-xl" />
           ) : (
             <IoPlay className="text-xl" />
           )}
         </button>
-      </div> */}
-      <SpotifyPlayer
-        token={session.accessToken}
-        uris={song.uri}
-        play={!play}
-        // onClick={handleChange}
-      />
+      </div>
+      {/* <SpotifyPlayer token={session.accessToken} uris={song.uri} play={play} /> */}
     </div>
   );
 }
