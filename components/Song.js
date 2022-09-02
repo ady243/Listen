@@ -30,6 +30,7 @@ function Song({ song }) {
 
   return (
     <div className="items-center rounded shadow-lg  bg-[rgb(255,255,255)]  m-65 block justify-between">
+      <br></br>
       {image && (
         <Image
           src={image.url}
