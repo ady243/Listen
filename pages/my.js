@@ -1,14 +1,13 @@
-import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import Loader from "../components/Loader";
 import Header from "../components/Header";
-import Body from "../components/Body";
-import Right from "../components/Right";
 import Sidebar from "../components/Sidebar";
 import SpotifyWebApi from "spotify-web-api-node";
 import ListSongs from "../components/ListSongs";
+import Player from "../components/Player";
+import { IoHeart } from "react-icons/io5";
 
 // TODO: il faut exporter ça quelque part pour éviter de le déclarer dans tous les composants
 const spotifyApi = new SpotifyWebApi({
@@ -17,7 +16,6 @@ const spotifyApi = new SpotifyWebApi({
 });
 
 function MyFavourites() {
-
   const router = useRouter();
   const { status, data: session } = useSession({
     required: true,
@@ -32,7 +30,7 @@ function MyFavourites() {
   const [error, setError] = useState(null);
   // on définie le state pour la pagination
   const [offset, setOffset] = useState(0);
-  const [limit, setLimit] = useState(5);
+  const [limit, setLimit] = useState(10);
   const [total, setTotal] = useState(0);
   const [next, setNext] = useState(null);
   const [previous, setPrevious] = useState(null);
@@ -74,21 +72,21 @@ function MyFavourites() {
       <Header session={session} />
       <Sidebar />
 
-      {/* Ici j'ai pas utilisé le Body, il faut trouver un moyen de l'utiliser partout */}
-      <section className="bg-black text-white ml-24 py-4 space-y-8 md:max-w-6xl flex-grow md:mr-2.5">
-        <h1 className="text-2xl">Mes favoris</h1>
+      <section className=" ml-24 py-4 space-y-8 md:max-w-15xl flex-grow md:mr-2.5 grid-cols-5 h-full w-full justify-center block">
+        <hr />
+        <h2 className="text-3xl text-left text-white">
+          Favoris
+          <IoHeart className="text-4xl text-[rgb(234,9,9)]" />
+        </h2>
         {songs && songs.length > 0 ? (
           //  J'utilise le même composant que sur la page d'accueil vu que ce sont des sons aussi
-          <ListSongs
-            songs={songs}
-            loading={loading}
-            error={error}
-          />
+          <ListSongs songs={songs} loading={loading} error={error} />
         ) : (
           <p>Aucun son enregistré</p>
         )}
       </section>
-      <Right />
+
+      <Player />
     </main>
   );
 }

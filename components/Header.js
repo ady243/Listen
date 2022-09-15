@@ -8,7 +8,7 @@ function Header() {
 
   return (
     <header>
-      <nav className="flex flex-wrap items-center justify-between bg-black ">
+      <nav className="flex flex-wrap items-center justify-between bg-black">
         <SearchArea />
 
         <div className="flex w-full lg:flex lg:items-center lg:w-auto">

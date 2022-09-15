@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import { IoCompass, IoHome, IoAddOutline, IoHeart } from "react-icons/io5";
+import { IoCompass, IoHome, IoHeart } from "react-icons/io5";
 import Link from "next/link";
 
 function Sidebar() {
   return (
-    <section className="fixed -top-1 z-40 flex-col justify-around p-4 bg-black w-[85px]  space-y-8 h-full ">
+    <section className="fixed h-full top-1 z-40 flex-col justify-around p-4 bg-black w-[85px]  space-y-8 ">
       <Image
         src="https://zupimages.net/up/22/33/khud.jpeg"
         width={90}
@@ -25,7 +25,6 @@ function Sidebar() {
         <Link href="/my" className="flex items-center space-x-3">
           <IoHeart className="text-4xl text-white cursor-pointer siderbarIcon" />
         </Link>
-        <IoAddOutline className="text-4xl text-white cursor-pointer siderbarIcon" />
       </div>
     </section>
   );

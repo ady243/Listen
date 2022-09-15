@@ -1,6 +1,6 @@
 import { useAppContext } from "../src/context/state";
 import SpotifyPlayer from "react-spotify-web-playback";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 function Player() {
   const { session, status, songUri, setSongUri, play, setPlay } =
@@ -12,7 +12,7 @@ function Player() {
   }, [session, status, songUri, play]);
 
   return (
-    <div className="px-20 ml-10 justify-center w-full h-15">
+    <div className="px-20 ml-20 justify-center w-full h-15 listen">
       {session && (
         <SpotifyPlayer token={session.accessToken} uris={songUri} play={play} />
       )}

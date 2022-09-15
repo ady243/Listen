@@ -3,7 +3,6 @@ import { getSession, signIn } from "next-auth/react";
 import Loader from "../components/Loader";
 import Header from "../components/Header";
 import Body from "../components/Body";
-import Right from "../components/Right";
 import Sidebar from "../components/Sidebar";
 import Player from "../components/Player";
 
@@ -32,7 +31,7 @@ function Index() {
       <Header />
       <Sidebar />
       <Body />
-      <Right />
+
       <Player />
     </>
   );

@@ -32,11 +32,11 @@ function Song({ song }) {
   }
 
   return (
-    <div className="items-center rounded  bg-[rgb(255,255,255)]  m-50 block justify-between">
+    <div className="grid-cols-4 py-4 ml-2 space-y-10 text-black bg-white md:max-w-2xl md:mr-3 h-50 w-50">
       {image && (
         <Image
           src={image.url}
-          alt=""
+          alt="Image"
           height={image.height}
           width={image.width}
           className="w-full"

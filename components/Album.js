@@ -29,6 +29,7 @@ function Album(props) {
           >
             <IoPlay className="text-l ml-[1px]" />
           </div>
+
           <div>
             <h2 className="text-[20px] uppercase rounded-full">{album.name}</h2>
             <h4 className=" text-[15px] uppercase rounded-full font-extrabold ">
